@@ -16,10 +16,11 @@ Overall I can easily recommend subscribing to these boxes as every month there
 are always interesting things to do, espcially if you dig into the parts.
 
 There are 6 usable I/Os (5 if you don't want to lose the SWDIO pin to I/O) of
-which this circuit uses two, C1 and C4 (acting as ADC1 channel 2). I wrote
-is using the [ch32fun](https://github.com/cnlohr/ch32fun) and if you copy
-this repo into the examples directory you can just type `make` and things
-should work.
+which this circuit uses two, PC1 (pin 5) and C4 (pin 7, acting as ADC1 
+channel 2). I wrote the C code and was using the 
+[ch32fun](https://github.com/cnlohr/ch32fun) repo as a guide. If you copy
+this repo into the examples directory of that repo you can just type `make`
+and things should just work.
 
 The original "Larson" scanner was on the front of self driving car named
 "Kit" in the TV drama "Night Rider" the folks at Evil Mad Science did a
@@ -89,8 +90,13 @@ build_buffer() {
 ```
 
 To update the color of all 8 pixels, you first reset the controller and
-then you dump that buffer out of the port. The result will be a WS2812
-command string to set the 8 pixels to the colors you set up.
+then you dump that buffer out of the port. To reset the controller you
+hold its `DATAIN` line low for 50uS (or more). After reset, the first
+LED will use 24 bits to set itself and then pass on all future bits, Etc.
+until the last LED is programmed. At which point any future bits will just
+get tossed to the wind until you reset the controller again. 
+
+The result will be 8 pixels set to the colors you set up.
 
 ## So how long does it take?
 
