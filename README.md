@@ -139,7 +139,7 @@ this chip so we can "input" a value through a variable resistor (also
 called a potentiometer).
 
 Channel 2 of the ADC is selectable on port PC4 (chip pin 7) so I hooked up
-the variable resistor's "wiper" (the center pin) to pin 6, and the outer
+the variable resistor's "wiper" (the center pin) to pin 7, and the outer
 pins across 3.3v and ground. Now when you turn the potentiometer's shaft,
 the voltage at the input pin will vary between 0 and 3.3 volts.
 
